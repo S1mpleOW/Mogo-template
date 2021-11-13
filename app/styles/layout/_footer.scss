@@ -1,0 +1,175 @@
+.footer {
+	&__top {
+		padding: 7.5rem 0;
+		@include flexBox(stretch, space-between);
+	}
+	&__column {
+		width: calc(35% - 2.5rem);
+		@include flexBox(stretch, space-between, column);
+		&:first-child {
+			width: calc(40% - 2.5rem);
+		}
+		&:last-child {
+			width: calc(25% - 2.5rem);
+		}
+	}
+	&__heading {
+		height: 4rem;
+		text-transform: uppercase;
+		font-weight: 500;
+		display: inline-block;
+		flex-shrink: 0;
+		&--logo {
+			font-size: 4.6rem;
+			font-weight: 600;
+			color: $gray-dark-color;
+			text-transform: none;
+		}
+	}
+	&__content {
+		margin-top: auto;
+	}
+	&__desc {
+		margin-bottom: 4.5rem;
+	}
+	&__followers {
+		font-weight: 500;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid #e5e5e5;
+		margin-bottom: 1.5rem;
+		span {
+			font-weight: bold;
+			font-size: 1.7rem;
+		}
+	}
+	&__social {
+		@include flexBox(center);
+		margin-bottom: 3.5rem;
+		&--icon {
+			color: $third-color;
+			margin-left: 1.5rem;
+			font-size: 2rem;
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+	&__form {
+		width: 100%;
+		@include flexBox;
+		&--input {
+			padding: 1.5rem;
+			background: white;
+			outline: none;
+			border: 1px solid #e5e5e5;
+			border-right: 0;
+			text-transform: capitalize;
+			font-family: $secondary-font;
+			font-style: italic;
+			width: 100%;
+		}
+		&--btn {
+			padding: 1.5rem 3rem;
+			background: $third-color;
+			outline: none;
+			border: none;
+			color: white;
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 1.4rem;
+			cursor: pointer;
+			flex-shrink: 0;
+			&:hover {
+				opacity: 0.9;
+			}
+		}
+	}
+	&__blog {
+		@include flexBox(center);
+		margin-bottom: 3rem;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		img {
+			width: 12rem;
+			height: 8rem;
+			object-fit: cover;
+			flex-shrink: 0;
+		}
+		&--info {
+			padding-left: 2rem;
+		}
+		&--title {
+			margin-bottom: 1rem;
+			text-transform: uppercase;
+			font-size: 1.2rem;
+			line-height: 1.4;
+			color: $title-color;
+			font-weight: 600;
+			@include textOverflow(2);
+		}
+		&--date {
+			font-size: 1.3rem;
+		}
+	}
+	&__images {
+		@include flexBox(stretch, flex-start, row, flex, wrap);
+		margin-left: -2px;
+		&--more {
+			font-size: 1.3rem;
+			margin-top: 2rem;
+			display: inline-block;
+		}
+	}
+	&__image {
+		margin-left: 2px;
+		margin-bottom: 4px;
+		width: calc(33.33% - 2px);
+		padding-bottom: 33.33%;
+		height: 0;
+		position: relative;
+		img {
+			// width: 8.8rem;
+			// height: 8.8rem;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			position: absolute; // áp dụng với những hình vuông tỉ lệ với nhau
+			top: 0;
+			left: 0;
+		}
+	}
+	&__bottom {
+		padding: 2.5rem 0;
+		text-align: center;
+		border-top: 1px solid #e5e5e5;
+	}
+	@include maxWidth(1023px) {
+		&__top {
+			padding: 5rem 0;
+			display: block;
+		}
+		&__column:not(:nth-child(99)) {
+			width: 100%;
+			margin-bottom: 3rem;
+		}
+		&__column:last-child {
+			margin-bottom: 0;
+		}
+		&__content {
+			margin-top: 2rem;
+		}
+		&__heading {
+			&--logo {
+				height: 3rem;
+			}
+			height: 1rem;
+			display: block;
+		}
+	}
+	@include maxWidth(767px) {
+		&__top {
+			padding: 3rem 0;
+		}
+	}
+}

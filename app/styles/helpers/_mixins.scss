@@ -1,0 +1,152 @@
+@mixin absoluteCenter($direction: 'left', $position: absolute) {
+	position: $position;
+
+	@if $direction == 'left' {
+		left: 50%;
+		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+	}
+
+	@if $direction == 'top' {
+		top: 50%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+	}
+
+	@if $direction == 'both' {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+	}
+}
+@mixin absoluteFull() {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@mixin textOverflow($rows: 1) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $rows;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+	max-width: 100%;
+	white-space: pre-wrap;
+	word-break: break-word; // rớt theo từ
+}
+
+@mixin maxWidth($breakpoints) {
+	@media screen and (max-width: $breakpoints) {
+		@content;
+	}
+}
+
+@mixin minWidth($breakpoints) {
+	@media screen and (min-width: $breakpoints) {
+		@content;
+	}
+}
+
+@mixin flexBox(
+	$align: stretch,
+	$justify: stretch,
+	$direction: row,
+	$display: flex,
+	$wrap: nowrap
+) {
+	display: $display;
+	align-items: $align;
+	justify-content: $justify;
+	flex-direction: $direction;
+	flex-wrap: $wrap;
+}
+
+@mixin hideScroll() {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+@mixin hoverEffect($itemClass, $contentClass, $isTransform: 'true') {
+	#{$itemClass} {
+		position: relative;
+		z-index: 5;
+		& > * {
+			transition: transform 0.25s linear;
+			will-change: transform;
+		}
+		#{$contentClass} {
+			@include absoluteFull;
+			@include flexBox(center, center, column);
+			text-align: center;
+			transition: all 0.25s linear;
+			background: linear-gradient(
+				to bottom,
+				rgba($primary-color, 0.8),
+				rgba($secondary-color, 0.8)
+			);
+			z-index: 2;
+			opacity: 0;
+			visibility: hidden;
+		}
+		@if $isTransform == 'true' {
+			&::after {
+				content: '';
+				@include absoluteFull();
+				background-color: $third-color;
+				z-index: -1;
+				transition: all 0.25s linear;
+			}
+		}
+		&:hover {
+			@if $isTransform == 'true' {
+				// transform: translate(-1rem, -1rem);
+				// will-change: transform;
+				& > * {
+					transform: translate(-1rem, -1rem);
+					will-change: transform;
+				}
+				// &::after {
+				// 	transform: translate(1rem, 1rem);
+				// }
+			}
+			#{$contentClass} {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}
+@mixin touchSlider($width: 80%, $gap: 2rem) {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-snap-stop: always;
+	padding: 1rem;
+	margin-left: 0;
+	@include hideScroll();
+	& > * {
+		flex: 0 0 calc(#{$width} - #{$gap});
+		scroll-snap-align: center;
+		margin-left: $gap;
+		&:first-of-type {
+			margin-left: unset;
+		}
+	}
+}

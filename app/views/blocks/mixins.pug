@@ -1,0 +1,105 @@
+mixin menuLink(title, href= "#")
+  li.header__menu__item
+    a.header__menu__link(href= href)= title
+
+mixin headerBottomItem(number, title, isActive='')
+  .header__bottom--item(class= isActive)
+    span.header__bottom--number= number
+    span.header__bottom--text= title
+
+mixin blockBox(caption, title, description)
+  .block__box
+    h3.block__box__caption= caption
+    h2.block__box__heading= title
+    if description
+      p.block__box__description.text= description 
+
+mixin aboutItem(src, title, iconClass, alt = "")
+  li.about__item
+    img.about__image(src= src, alt= alt)
+    .about__content
+      i.about__icon(class= iconClass)
+      span.about__title= title
+
+mixin serviceItem(src, title, description, alt = "")
+  .service__item
+    img.service__item-image(src= src, alt= alt)
+    .service__item-info
+      h3.service__item-heading= title
+      p.service__item-desc.text= description
+
+mixin wedoItem(src, title, description, active= "",alt= "")
+  .wedo__item(class= active)
+    .wedo__item-header
+      img(src= src, alt= alt).wedo__item-image
+      h3.wedo__item-title= title
+      i.fa.fa-angle-up.wedo__item-icon
+    .wedo__item-content
+      .wedo__item-text.text.text--light.text--italic= description
+
+mixin teamSocials(facebook= "#", twitter= "#", pinterest= "#", instagram= "#")
+  ul.team__socials
+    li.team__socials-item
+      a.team__socials-link(href= facebook)
+        i.fab.fa-facebook-f
+      a.team__socials-link(href= twitter)
+        i.fab.fa-twitter
+      a.team__socials-link(href= pinterest)
+        i.fab.fa-pinterest-p
+      a.team__socials-link(href= instagram)
+        i.fab.fa-instagram
+
+mixin teamItem(src= "./images/img-team1.png", name= "Christopher cambell", position= "Branding/UX Team")
+  li.team__item
+    .team__main
+      img(src= src, alt="")
+      .team__content
+        if block
+          block
+    .team__info
+      h3.team__info-name= name
+      span.team__info-position= position
+
+mixin workItem(src= "./images/img-work1.png", isFul= "", title= "Creatively designed", description= "Lorem ipsum dolor sit amet")
+  .work__item(class= isFul)
+    img(src= src, alt="work1")
+    .work__content
+      img(src="./images/img-work-icon.png", alt="work-icon")
+      h3.work__title= title
+      span.work__desc.text.text--light.text--italic= description
+
+mixin peopleItem(src= "../images/img-people1.png", name= "Matthew Dix", job= "Graphic design", description= "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio error quas hic vitae sint ab quibusdam consectetur voluptatibus ratione. Odio!")
+  li.people__item
+    img(src= src, alt="people1")
+    .people__info
+      h3.people__info--name= name
+      .people__info--job
+        span.text.text--light.text--italic= job
+      p.people__info--description.text= description
+
+mixin storyItem(src= "./images/img-blog1.png", dateNumber= "15", dataText= "Jan", metaSeen= "542", metaComment= "17", title= "Lorem ipsum dolor sit amet", description= "Lorem ipsum dolor sit amet consectetur adipisicing elit. At ab error a consectetur accusamus. Odio quibusdam minus aut consequatur deleniti, et ipsam. Adipisci, maiores quam ab odio molestiae voluptatibus dolor?")
+  li.story__item
+    .story__media
+      img(src= src, alt="")
+      .story__date
+        span.story__date--number= dateNumber
+        span.story__date--text.text.text--light.text--italic= dataText
+    h3.story__title= title
+    p.story__desc= description
+    .story__meta
+      .story__meta--item
+        i.fa.fa-eye.story__meta--icon
+        span.story__meta--number.text.text--light.text--italic= metaSeen
+      .story__meta--item
+        i.fa.fa-comment.story__meta--icon
+        span.story__meta--number.text.text--light.text--italic= metaComment
+
+mixin quoteItem(src= "../images/img-quote.png", type= false, desc= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione doloremque autem iure nisi dolore excepturi, sit reprehenderit nobis quos, distinctio id numquam praesentium earum non a, aut ex in!", author= "Jon Doe")
+  .quote__item
+    if type == false
+      img(src= src, alt="").quote__icon
+    else
+      img(src= src, alt= "").quote__image
+    .quote__info
+      p.quote__desc= desc
+      span.quote__author= author

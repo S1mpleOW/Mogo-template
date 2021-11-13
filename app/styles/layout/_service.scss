@@ -1,0 +1,64 @@
+.service {
+	padding-top: 9.3rem;
+	padding-bottom: 11rem;
+	&__list {
+		@include flexBox(stretch, space-between, row, flex, wrap);
+		margin-top: 6.5rem;
+		&:last-of-type {
+			margin-top: 5rem;
+			padding-top: 5rem;
+		}
+		&:last-of-type {
+			border-top: 1px solid $gray-dark-color;
+		}
+	}
+	&__item {
+		width: calc(33.333% - 3rem);
+		@include flexBox(flex-start);
+		&-image {
+			display: block;
+			height: 3rem;
+			width: auto;
+			margin: 0 3rem;
+		}
+		&-info {
+			width: calc(100% - 9rem);
+			height: 100%;
+			@include flexBox(flex-start, stretch, column);
+		}
+		&-heading {
+			color: $title-color;
+			font-weight: 500;
+			text-transform: uppercase;
+			margin-bottom: 1.5rem;
+			@include textOverflow(1);
+		}
+		&-desc {
+			margin-top: auto;
+			line-height: 1.6;
+		}
+	}
+}
+@include minWidth(1024px) {
+	.service {
+		&__list {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 4rem;
+		}
+		&__item {
+			width: auto;
+		}
+	}
+}
+@include maxWidth(1023px) {
+	.service {
+		padding-top: 5rem;
+		&__item {
+			width: 100%;
+			&:not(:last-child) {
+				margin-bottom: 3rem;
+			}
+		}
+	}
+}

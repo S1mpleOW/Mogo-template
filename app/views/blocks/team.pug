@@ -1,0 +1,13 @@
+section.team
+  .container
+    +blockBox('Who are you', 'Meet our team', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id veritatis, eum saepe iste, totam maiores cum minima ea, voluptas a culpa quod ducimus voluptatibus modi? Quas labore itaque odio dignissimos.')
+    ul.team__list
+      +teamItem("./images/img-team1.png", "Matthew dix", "Graphic Design")
+        +teamSocials()
+      +teamItem("./images/img-team2.png")
+        +teamSocials()
+      +teamItem("./images/img-team3.png", "Michael fertic", "Developer")
+        +teamSocials()
+section.brand
+  .container
+    img(src="./images/img-logos.png", alt="logo")
